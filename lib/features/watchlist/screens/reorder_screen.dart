@@ -208,6 +208,7 @@ class _StockListState extends State<StockList>
                 ),
 
                 Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
                       widget.stocks[index].price.toString(),
