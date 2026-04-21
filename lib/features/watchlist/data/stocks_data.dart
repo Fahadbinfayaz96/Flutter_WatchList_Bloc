@@ -1,7 +1,5 @@
 import 'models/stocks_model.dart';
 
-import 'models/stocks_model.dart';
-
 class StocksData {
   static const List<StocksModel> stocks = [
     StocksModel(

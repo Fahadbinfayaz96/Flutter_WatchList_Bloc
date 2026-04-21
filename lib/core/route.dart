@@ -18,7 +18,8 @@ class AppRoutes {
             path: '/watchlist-reorder',
             name: "reorder",
             builder: (BuildContext context, GoRouterState state) {
-              return ReorderWatchlistScreen();
+              final title = state.extra;
+              return ReorderWatchlistScreen(watchlistTitle: title.toString());
             },
           ),
         ],

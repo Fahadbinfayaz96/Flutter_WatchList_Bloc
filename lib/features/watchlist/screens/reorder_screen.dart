@@ -12,19 +12,20 @@ import 'package:flutter_watchlist_bloc/features/watchlist/widgets/buttons/primar
 import 'package:flutter_watchlist_bloc/features/watchlist/widgets/buttons/secondary_button.dart';
 
 class ReorderWatchlistScreen extends StatelessWidget {
-  const ReorderWatchlistScreen({super.key});
+  final String watchlistTitle;
+  const ReorderWatchlistScreen({super.key, required this.watchlistTitle});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Edit Watchlist 1")),
+      appBar: AppBar(title: Text(watchlistTitle)),
       body: Stack(
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: [
-                editTile(context),
+                editTile(context, watchlistTitle),
                 SizedBox(height: 15.h),
                 Expanded(
                   child: BlocBuilder<WatchlistBloc, WatchlistState>(
@@ -79,7 +80,7 @@ class ReorderWatchlistScreen extends StatelessWidget {
     );
   }
 
-  editTile(BuildContext context) {
+  editTile(BuildContext context, watchListTitle) {
     return Container(
       width: double.infinity,
       height: 50.h,
@@ -98,7 +99,7 @@ class ReorderWatchlistScreen extends StatelessWidget {
 
           children: [
             Text(
-              "Watchlsit 1",
+              watchListTitle,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: AppTheme.grey500,
                 fontSize: 14.sp,

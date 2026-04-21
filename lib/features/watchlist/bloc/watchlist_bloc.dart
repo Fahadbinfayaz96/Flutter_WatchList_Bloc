@@ -1,6 +1,4 @@
-import 'dart:developer';
-
-import 'package:flutter_bloc/flutter_bloc.dart' show Bloc;
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_watchlist_bloc/features/watchlist/bloc/watchlist_event.dart';
 import 'package:flutter_watchlist_bloc/features/watchlist/bloc/watchlist_state.dart';
 import 'package:flutter_watchlist_bloc/features/watchlist/data/models/stocks_model.dart';

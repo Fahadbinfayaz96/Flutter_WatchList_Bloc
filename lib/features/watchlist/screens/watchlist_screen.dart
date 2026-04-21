@@ -190,123 +190,119 @@ class Watchlist extends StatelessWidget {
           Expanded(
             child: TabBarView(
               children: [
-                BlocBuilder<WatchlistBloc, WatchlistState>(
-                  builder: (context, state) {
-                    if (state is WatchlistLoadingState ||
-                        state is WatchlistInitialState) {
-                      return Center(
-                        child: CircularProgressIndicator(
-                          color: Theme.of(context).colorScheme.onSurface,
-                        ),
-                      );
-                    } else if (state is WatchlistLoadedState) {
-                      final stocks = state.stocks;
-
-                      return ListView.builder(
-                        padding: EdgeInsets.only(top: 20),
-                        itemBuilder: (context, index) {
-                          return GestureDetector(
-                            onTap: () {
-                              context.goNamed('reorder');
-                            },
-                            child: ListCard(
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        stocks[index].name,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge
-                                            ?.copyWith(
-                                              fontSize: 13.sp,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                      ),
-                                      SizedBox(height: 10.h),
-                                      Text(
-                                        stocks[index].type,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium
-                                            ?.copyWith(
-                                              fontSize: 12.sp,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                      ),
-                                    ],
-                                  ),
-
-                                  Column(
-                                    children: [
-                                      Text(
-                                        stocks[index].price.toString(),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge
-                                            ?.copyWith(
-                                              fontSize: 13.sp,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                      ),
-                                      SizedBox(height: 10.h),
-                                      Container(
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 12,
-                                          vertical: 3,
-                                        ),
-
-                                        decoration: BoxDecoration(
-                                          color: stocks[index].change >= 0
-                                              ? AppTheme.green500
-                                              : AppTheme.red500,
-                                          borderRadius: BorderRadius.circular(
-                                            20,
-                                          ),
-                                        ),
-
-                                        child: Text(
-                                          "${stocks[index].change.toString()}%",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium
-                                              ?.copyWith(
-                                                fontSize: 12.sp,
-                                                fontWeight: FontWeight.w600,
-                                                color: AppTheme.white500,
-                                              ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        },
-
-                        itemCount: stocks.length,
-                      );
-                    } else if (state is WatchlistEmptyState) {
-                      return Text(state.message);
-                    } else {
-                      return Text("Something went wrong");
-                    }
-                  },
-                ),
-
-                Center(child: Text("coming soon")),
-                Center(child: Text("coming soon")),
+                StockList(watchlistTitle: "Watchlist 1"),
+                StockList(watchlistTitle: "Watchlist 2"),
+                Center(child: Text("coming soon...")),
               ],
             ),
           ),
         ],
       ),
+    );
+  }
+}
+
+class StockList extends StatelessWidget {
+  final String watchlistTitle;
+  const StockList({super.key, required this.watchlistTitle});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<WatchlistBloc, WatchlistState>(
+      builder: (context, state) {
+        if (state is WatchlistLoadingState || state is WatchlistInitialState) {
+          return Center(
+            child: CircularProgressIndicator(
+              color: Theme.of(context).colorScheme.onSurface,
+            ),
+          );
+        } else if (state is WatchlistLoadedState) {
+          final stocks = state.stocks;
+
+          return ListView.builder(
+            padding: EdgeInsets.only(top: 20),
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () {
+                  context.goNamed('reorder', extra: watchlistTitle);
+                },
+                child: ListCard(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            stocks[index].name,
+                            style: Theme.of(context).textTheme.bodyLarge
+                                ?.copyWith(
+                                  fontSize: 13.sp,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                          ),
+                          SizedBox(height: 10.h),
+                          Text(
+                            stocks[index].type,
+                            style: Theme.of(context).textTheme.bodyMedium
+                                ?.copyWith(
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                          ),
+                        ],
+                      ),
+
+                      Column(
+                        children: [
+                          Text(
+                            stocks[index].price.toString(),
+                            style: Theme.of(context).textTheme.bodyLarge
+                                ?.copyWith(
+                                  fontSize: 13.sp,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                          ),
+                          SizedBox(height: 10.h),
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 3,
+                            ),
+
+                            decoration: BoxDecoration(
+                              color: stocks[index].change >= 0
+                                  ? AppTheme.green500
+                                  : AppTheme.red500,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+
+                            child: Text(
+                              "${stocks[index].change.toString()}%",
+                              style: Theme.of(context).textTheme.bodyMedium
+                                  ?.copyWith(
+                                    fontSize: 12.sp,
+                                    fontWeight: FontWeight.w600,
+                                    color: AppTheme.white500,
+                                  ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+
+            itemCount: stocks.length,
+          );
+        } else if (state is WatchlistEmptyState) {
+          return Text(state.message);
+        } else {
+          return Text("Something went wrong");
+        }
+      },
     );
   }
 }
