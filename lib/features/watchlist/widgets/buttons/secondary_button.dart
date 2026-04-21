@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../core/theme.dart';
+import '../../../../core/theme.dart';
 
 class SecondaryElevatedButton extends StatelessWidget {
   final VoidCallback? onPressed;

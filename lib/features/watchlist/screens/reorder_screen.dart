@@ -8,8 +8,8 @@ import 'package:flutter_watchlist_bloc/features/watchlist/bloc/watchlist_event.d
 import 'package:flutter_watchlist_bloc/features/watchlist/bloc/watchlist_state.dart';
 import 'package:flutter_watchlist_bloc/features/watchlist/data/models/stocks_model.dart';
 import 'package:flutter_watchlist_bloc/features/watchlist/widgets/list_card_widget.dart';
-import 'package:flutter_watchlist_bloc/features/watchlist/widgets/primary_button.dart';
-import 'package:flutter_watchlist_bloc/features/watchlist/widgets/secondary_button.dart';
+import 'package:flutter_watchlist_bloc/features/watchlist/widgets/buttons/primary_button.dart';
+import 'package:flutter_watchlist_bloc/features/watchlist/widgets/buttons/secondary_button.dart';
 
 class ReorderWatchlistScreen extends StatelessWidget {
   const ReorderWatchlistScreen({super.key});
