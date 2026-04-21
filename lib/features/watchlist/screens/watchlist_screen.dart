@@ -8,6 +8,7 @@ import 'package:flutter_watchlist_bloc/features/watchlist/widgets/list_card_widg
 import 'package:go_router/go_router.dart';
 
 import '../../../core/theme.dart';
+import '../widgets/changePercentageCalculator.dart';
 
 class WatchlistScreen extends StatefulWidget {
   const WatchlistScreen({super.key});
@@ -191,7 +192,7 @@ class Watchlist extends StatelessWidget {
             child: TabBarView(
               children: [
                 StockList(watchlistTitle: "Watchlist 1"),
-                StockList(watchlistTitle: "Watchlist 2"),
+                Center(child: Text("coming soon...")),
                 Center(child: Text("coming soon...")),
               ],
             ),
@@ -254,6 +255,7 @@ class StockList extends StatelessWidget {
                       ),
 
                       Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
                             stocks[index].price.toString(),
@@ -266,8 +268,8 @@ class StockList extends StatelessWidget {
                           SizedBox(height: 10.h),
                           Container(
                             padding: const EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 3,
+                              horizontal: 10,
+                              vertical: 2,
                             ),
 
                             decoration: BoxDecoration(
@@ -278,7 +280,7 @@ class StockList extends StatelessWidget {
                             ),
 
                             child: Text(
-                              "${stocks[index].change.toString()}%",
+                              "${stocks[index].change.toString()} (${calculateChangePercent(stocks[index].change, stocks[index].price).toStringAsFixed(2)}%)",
                               style: Theme.of(context).textTheme.bodyMedium
                                   ?.copyWith(
                                     fontSize: 12.sp,

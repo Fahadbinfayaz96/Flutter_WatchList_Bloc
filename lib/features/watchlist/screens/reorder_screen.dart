@@ -11,6 +11,8 @@ import 'package:flutter_watchlist_bloc/features/watchlist/widgets/list_card_widg
 import 'package:flutter_watchlist_bloc/features/watchlist/widgets/buttons/primary_button.dart';
 import 'package:flutter_watchlist_bloc/features/watchlist/widgets/buttons/secondary_button.dart';
 
+import '../widgets/changePercentageCalculator.dart';
+
 class ReorderWatchlistScreen extends StatelessWidget {
   final String watchlistTitle;
   const ReorderWatchlistScreen({super.key, required this.watchlistTitle});
@@ -218,8 +220,8 @@ class _StockListState extends State<StockList>
 
                     Container(
                       padding: const EdgeInsets.symmetric(
-                        horizontal: 12,
-                        vertical: 3,
+                        horizontal: 10,
+                        vertical: 2,
                       ),
 
                       decoration: BoxDecoration(
@@ -229,7 +231,7 @@ class _StockListState extends State<StockList>
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Text(
-                        "${widget.stocks[index].change.toString()}%",
+                        "${widget.stocks[index].change.toString()} (${calculateChangePercent(widget.stocks[index].change, widget.stocks[index].price).toStringAsFixed(2)}%)",
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w600,

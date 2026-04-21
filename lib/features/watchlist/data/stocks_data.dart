@@ -6,7 +6,7 @@ class StocksData {
       id: "1",
       name: "RELIANCE",
       price: 1374.10,
-      change: -0.40,
+      change: -4.40,
       type: "NSE | EQ",
     ),
     StocksModel(
@@ -49,6 +49,7 @@ class StocksData {
       name: "MRF",
       price: 147625.00,
       change: 5.00,
+
       type: "NSE | EQ",
     ),
     StocksModel(
@@ -58,8 +59,6 @@ class StocksData {
       change: 3.80,
       type: "BSE | EQ",
     ),
-
-    // Additional realistic stocks
     StocksModel(
       id: "9",
       name: "TCS",
@@ -72,6 +71,7 @@ class StocksData {
       name: "INFY",
       price: 1620.75,
       change: -10.30,
+
       type: "NSE | EQ",
     ),
     StocksModel(
@@ -107,6 +107,7 @@ class StocksData {
       name: "KOTAKBANK",
       price: 1750.60,
       change: -9.45,
+
       type: "NSE | EQ",
     ),
     StocksModel(
